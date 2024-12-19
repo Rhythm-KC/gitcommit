@@ -15,11 +15,13 @@ import (
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "gitcommit",
-	Short: "Interactive Git commit tool for multiple commits",
-	Long: `This is an interactive git commit tool. When trying to commit multiple
-files together, you might wnat to sperate them into different commits or just 
-ignore them. This tool helps you do that. Now you can take tag files and commit
-these tags seperately with their own commit message.`,
+	Short: "A brief description of your application",
+	Long: `A longer description that spans multiple lines and likely contains
+examples and usage of using your application. For example:
+
+Cobra is a CLI library for Go that empowers applications.
+This application is a tool to generate the needed files
+to quickly create a Cobra application.`,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	// Run: func(cmd *cobra.Command, args []string) { },

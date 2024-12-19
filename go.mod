@@ -1,4 +1,4 @@
-module github.com/Rhythm-KC/gitcommit
+module com.Rhythm-KC/gitcommit
 
 go 1.23.4
 
