@@ -73,7 +73,7 @@ func CommitGroup(rootDir string, tags[]uint, commitMsg string) error{
         return exceptions.NewGitException("No Files to commit", nil);
     }
 
-    validTags, err := fromTagsToFiles(files, tags);
+    validTags, err := fromTagsToFiles(&files, &tags);
     if err != nil{
         return err
     }
@@ -90,16 +90,18 @@ func CommitGroup(rootDir string, tags[]uint, commitMsg string) error{
     return nil
 }
 
-func fromTagsToFiles(files []string, tags []uint) ([]string, error){
+func fromTagsToFiles(files *[]string, tags *[]uint) ([]string, error){
     validTags := []string{}
-    for _, tag  := range tags{
-        if tag < 0 && int(tag) >= len(tags){
+    for _, tag  := range *tags{
+        if tag < 0 && int(tag) >= len(*tags){
             return nil, exceptions.NewGitException(
                 fmt.Sprintf("Tag %d is not a valid tag.\n Commit Aborted!!", tag), 
                 nil)
         }
-        file := strings.Split(files[tag], " ")[1];
-        validTags = append(validTags, file)
+        trim := strings.TrimSpace((*files)[tag])
+        file:=strings.Split(trim, " ")
+
+        validTags = append(validTags, file[len(file) -1])
     }
     return validTags, nil
 }
